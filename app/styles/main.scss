@@ -1,0 +1,164 @@
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+// bower:scss
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+// endbower
+@import "bootstrap-sass-official/assets/stylesheets/bootstrap/_modals.scss";
+@import "bootstrap-sass-official/assets/stylesheets/bootstrap/_variables.scss";
+@import "variables.scss";
+@import "movies.scss";
+@import "music.scss";
+
+body {
+  padding: 0;
+  background-color: $body-color;
+  color: $text-color;
+  p{
+    font-family: $base-font-sans;
+  }
+  h2{
+    font-family: $sub-heading-font;
+  }
+  h3, h3 a {
+    font-family: $header-font;
+  }
+  a{
+    color: $text-color;
+    transition: all 0.3s ease;
+    &:hover{
+      text-decoration: none;
+      color: $color-point;
+    }
+  }
+}
+
+.nav.menu{
+  li a.nav-link{
+    transition: all 0.3s ease;
+  }
+}
+
+input.search-bar{
+  background-color: $secondary-body-color;
+  color: $text-color;
+  width: 100%;
+  height: 34px;
+  border: none;
+  padding-left: 35px;
+  transition: all 0.3s ease;
+  outline: none;
+  background-image: url('/images/search-3-xxl.png'); 
+  background-size: 19px;
+  background-repeat: no-repeat;    
+  background-position: 5px 5px;
+  &:focus{
+    background-color: $highlight-body-color;
+    transition: all 0.3s ease;
+  }
+}
+
+@media (screen and $screen-sm-min){
+  input.search-bar{
+    background-color: transparent;
+    color: $text-color;
+    height: 34px;
+    border: none;
+    padding-left: 35px;
+    transition: all 0.3s ease;
+    outline: none;
+    width: 30px;
+    background-image: url('/images/search-3-xxl.png'); 
+    background-size: 27px;
+    background-repeat: no-repeat;    
+    background-position: 5px 5px;
+    &:focus{
+      background-color: $highlight-body-color;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+  }
+}
+
+.background-as-image {
+  background-repeat: no-repeat;
+  background-size: cover;
+  width:100%;
+  min-height: 230px;
+  background-position: center;
+  @media (screen and $screen-sm-min){
+    width:100%;
+    min-height: 300px;
+  }
+  &.detail{
+    min-height: 425px;
+  }
+  &.music{
+    min-height: 120px;
+  }
+  &.podcast{
+    min-height: 188px;
+  }
+} 
+
+.main-title{
+  color: rgba(0, 151, 167, 1.0);
+  font-family: $header-font;
+  margin-top: 35px;
+  margin-bottom: 35px;
+}
+
+////////////////// movie ////////////////////
+.title{
+  margin-top: $margin;
+  text-transform: capitalize;
+}
+
+.date{
+  color: $faded-text-color;
+}
+
+.track-name{
+  border-bottom: solid 1px $color-point;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.item{
+  padding: $padding / 3;
+  margin-top: $margin;
+  &:hover{
+    .inner{
+      background-color: $highlight-body-color;
+    }
+  }
+  .inner{
+    transition: background-color 0.3s ease;
+    padding: $padding / 2;
+    background-color: $secondary-body-color;
+  }
+}
+
+.purchase{
+  margin-top: 20px;
+}
+
+a.btn.btn-primary{
+  background-color: rgba($color-point, 0.5);
+  border: rgba($color-point, 0.5);
+  &:hover{
+    background-color: $color-point;
+    border: $color-point;
+  }
+}
+
+////////////// footer styling /////////////////
+footer{
+  position: absolute;
+  bottom: 0;
+}
+
+.nav {
+  .nav-item.active{
+    border-bottom: solid 1px rgba(0, 151, 167, 1.0);
+  }
+  margin-bottom: 20px;
+}

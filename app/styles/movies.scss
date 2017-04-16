@@ -1,0 +1,23 @@
+$body-color: rgba(0, 0, 0, 1);
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+div[id^="movieDetail-"] {
+  background-color: rgba(black, 0.7);
+}
+
+.modal-dialog{
+  max-width: 700px;
+}
+
+.modal-content{
+  margin-top: 50%;
+}
+
+.modal-body{
+  background-color: $body-color;
+}

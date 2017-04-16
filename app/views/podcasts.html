@@ -1,0 +1,45 @@
+<div class="row justify-content-center">
+  <div class="movie item col-xs-6 col-sm-4 col-md-2" data-toggle="modal" data-target="#movieDetail-{{$index}}"
+  ng-repeat="result in searchResults">
+    <div class="inner">
+      <div class="background-as-image music" style="background-image: url({{getHighRes(result.artworkUrl100)}});"> </div>
+      <div class="title"><a href="{{result.trackViewUrl}}"><p class="truncate">{{result.trackName}}</p></a></div>
+      <div class="artist"><a href="{{result.artistViewUrl}}"><p class="truncate">{{result.artistName}}</p></a></div>
+      <div class="date" ng-bind="result.releaseDate | date:'yyyy'"></div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade showVideo" id="movieDetail-{{$index}}" tabindex="-1" role="dialog" aria-labelledby="videoShowLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="container-fluid">
+              <div class="row row-eq-height">
+                <div class="col-md-12 track-name">
+                  <h2><a href="{{result.trackViewUrl}}">{{result.trackName}}</a></h2>
+                  <h3><a href="{{result.artistViewUrl}}">{{result.artistName}}</a></h3>
+                </div>
+                <div class="col-xs-12 col-md-6" ng-if="!result.previewUrl">
+                  <img src="{{getHighRes(result.artworkUrl100)}}" class="img-fluid" style="width: 100%">
+                </div>
+                <div class="col-md-12" ng-if="result.previewUrl">
+                  <video poster="{{getHighRes(result.artworkUrl100)}}" id="#previewVideo" ng-if="result.previewUrl" width="100%" preload="auto" controls>
+                    <source src="{{result.previewUrl}}" type="video/mp4">
+                    Your browser does not support the HTML5 video tag.
+                  </video>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                  <h2>Genres</h2>
+                  <p ng-repeat="genre in result.genres">{{genre}}</p><br>
+                </div>
+                <div class="col-xs-12 purchase">
+                  <p ng-if="result.trackPrice">{{result.trackPrice}}{{result.currency}}</p>
+                  <a class="btn btn-primary" href="{{result.trackViewUrl}}">View on the itunes store</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
