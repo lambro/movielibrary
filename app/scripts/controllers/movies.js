@@ -32,21 +32,4 @@ angular.module('movieLibraryApp')
     }, function errorCallback() {
       // console.log('no response');
     });
-
-    // this is the controller I attempted to use with the service to take out the search functionaity:
-
-        // set initial search term - itunes doesnt seem to allow a general 'movie search...';
-    // $scope.searchTerm = 2017;
-    // $scope.mediaUrl = '&entity=movie';
-    // $scope.searchResults = [];
-
-    // $scope.search = function(){
-    //     itunesCall.search($scope.searchTerm, $scope.mediaUrl).then(function successCallback(response) {
-    //     $scope.searchResults = response.data.results;
-    //     $scope.myWelcome = response.data.results[0].trackName;
-    //   },
-    //   function errorCallback() {
-    //     console.log('no response');
-    //   });
-    // };
   });

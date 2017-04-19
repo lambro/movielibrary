@@ -17,8 +17,15 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
   ])
+  .config(function($sceDelegateProvider) {
+  $sceDelegateProvider.resourceUrlWhitelist([
+    'self',
+    'https://itunes.apple.com/search?term=**'
+    // 'https://itunes.apple.com/search?term=*'
+  ]);
+})
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

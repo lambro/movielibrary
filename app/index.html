@@ -2,8 +2,8 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
-    <meta name="description" content="">
+    <title>iTunes Search</title>
+    <meta name="description" content="I tunes music library test">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
@@ -27,7 +27,7 @@
     <div class="row">
       <div class="col-xs-12">
         <h1 class="text-center main-title" >iTunes Search</h1>
-<!--      <h2>{{newSearchTerm}}</h2>
+<!--           <h2>{{newSearchTerm}}</h2>
           <h2>{{searchResults}}</h2> -->
       </div>
     </div> <!-- header and navigation -->
@@ -49,13 +49,14 @@
           </ul>
         </div>
       <div class="col-xs-12 col-md-7">
-        <input class="pull-right search-bar" ng-model="newSearchTerm" ng-change="searchItunes()" type="text">
+        <input class="pull-right search-bar" ng-model="newSearchTerm" ng-keyup="searchItunes(newSearchTerm)" type="text">
       </div>
     </div>
   </div>
 
   <div class="container-fluid">
     <div ng-view="" autoscroll="true"></div>
+    <div ng-include="'views/search-results-template.html'" ng-show="newSearchTerm.length"></div>
   </div>
 
 
@@ -84,6 +85,8 @@
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/tether/dist/js/tether.js"></script>
+    <script src="https://rawgit.com/angular-ui/ui-select/master/dist/select.js"></script>
+    <!-- <script src="bower_components/angular-ui-select/dist/select.min.js"></script> -->
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
@@ -95,7 +98,7 @@
         <script src="scripts/controllers/podcasts.js"></script>
         <script src="scripts/controllers/music.js"></script>
         <script src="scripts/controllers/music-videos.js"></script>
-        <script src="scripts/services/itunescall.js"></script>
+        <script src="scripts/services/itunesCall.js"></script>
         <!-- endbuild -->
 </body>
 </html>

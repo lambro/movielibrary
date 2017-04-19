@@ -8,11 +8,11 @@
  * Controller of the movieLibraryApp
  */
 angular.module('movieLibraryApp')
-  .controller('GeneralCtrl', function ($scope, $location, $sce) {
+  .controller('GeneralCtrl', function ($scope, $location, $sce, $http, itunesCall) {
     
     //tab active function
     $scope.isActive = function (viewLocation) { 
-        return viewLocation === $location.path();
+      return viewLocation === $location.path();
     };
 
     $scope.getHighRes = function(obj){
@@ -22,29 +22,19 @@ angular.module('movieLibraryApp')
     $scope.trustSrc = function(src) {
       return $sce.trustAsResourceUrl(src);
     };
-
     // search on input change function
-    // $scope.searchItunes = function(params){
-    //         var movieSearchUrl = $scope.trustSrc('https://itunes.apple.com/search?term=' + params);
-    //         $http({
-    //         method: 'JSONP',
-    //         url: movieSearchUrl,
-    //         params: params,
-    //         headers: {
-    //           'cache-control': 'no-cache',
-    //           'postman-token': '6f5dd5be-14b8-adfb-0294-5502cf2d912f'
-    //         }
-    //     }).then(function successCallback(response) {
-    //         $scope.searchResults = response.data.results;
-    //         console.log('success');
-    //       }, function errorCallback() {
-    //         console.log('failed');
-    //       });
-    // };
+    $scope.searchItunes = function(params){
+      params = params.replace(/[^\w\s]/gi, '');
+      $scope.searchItunes = function(keywords){
+        itunesCall.search(keywords).then(function(response){
+          $scope.numberOfResults = response.data.resultCount;
+          $scope.newSearchResults = response.data.results;
+        });
+      };
+    };
 
-    // $scope.stopVideo = function ($) {
-    //   // body..
-    //        var video = $(video);
-    //         video.pause();
-    //   };
+    $scope.stopVideo = function ($) {
+      var video = $(video);
+      video.pause();
+    };
   });

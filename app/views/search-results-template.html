@@ -1,0 +1,35 @@
+<h1>Search Results</h1>
+
+<h2>You are searching for:  "{{newSearchTerm}}"</h2>
+<!-- <h2>{{searchResults}}</h2> -->
+<!-- 
+{{numberOfResults}}
+{{newSearchResults}}
+ --><div ng-repeat="result in newSearchResults">
+  <div class="item col-xs-6 col-sm-4 col-md-2">
+      <div class="inner">
+      <h1>{{result.kind}}</h1>
+        <div class="background-as-image music" style="background-image: url({{getHighRes(result.artworkUrl100)}});"> </div>
+        <div class="title"><a href="{{result.trackViewUrl}}"><p class="truncate">{{result.trackName}}</p></a></div>
+        <div class="artist"><a href="{{result.artistViewUrl}}"><p class="truncate">{{result.artistName}}</p></a></div>
+        <div class="date" ng-bind="result.releaseDate | date:'yyyy'"></div>
+      </div>
+  </div>
+</div>
+
+
+<hr>
+
+<div ng-repeat="result in searchResults | orderBy:'releaseDate'">
+  <div class="item col-xs-6 col-sm-4 col-md-2">
+      <div class="inner">
+      <h1>{{result.kind}}</h1>
+        <div class="background-as-image music" style="background-image: url({{getHighRes(result.artworkUrl100)}});"> </div>
+        <div class="title"><a href="{{result.trackViewUrl}}"><p class="truncate">{{result.trackName}}</p></a></div>
+        <div class="artist"><a href="{{result.artistViewUrl}}"><p class="truncate">{{result.artistName}}</p></a></div>
+        <div class="date" ng-bind="result.releaseDate | date:'yyyy'"></div>
+      </div>
+  </div>
+</div>
+
+<div ng-show="!searchResults.length"><h3>Sorry, no results match that query</h3></div>

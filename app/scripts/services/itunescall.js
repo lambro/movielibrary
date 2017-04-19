@@ -7,39 +7,39 @@
  * # itunesCall
  * Service in the movieLibraryApp.
  */
-angular.module('movieLibraryApp')
-  .service('itunesCall', function () {
-  // AngularJS will instantiate a singleton by calling "new" on this function
+// angular.module('movieLibraryApp')
+//   .service('itunesCall', function () {
+//   // AngularJS will instantiate a singleton by calling "new" on this function
 
-  // I had tried to use a service for the search function to streamline the code but it wasn't working and I didnt have time to complete it properly :(
+//   // I had tried to use a service for the search function to streamline the code but it wasn't working and I didnt have time to complete it properly :(
 
-  // my efforts are below:
+//   // my efforts are below:
 
-  // angular.module('movieLibraryApp')
-  //   .service('itunesCall', ['$http', function ($http, $sce) {
+  angular.module('movieLibraryApp')
+    .service('itunesCall', ['$http', '$sce', function ($http, $scope) {
 
-  //      because angular blocks links from another domain
-  //      var trustSrc = function(src) {
-  //        console.log("sce called");
-  //        return $sce.trustAsResourceUrl(src);
-  //      };
+    // //    // because angular blocks links from another domain
+      $scope.newSearchResults = {};
 
-  //     var appleLink = trustSrc('https://itunes.apple.com/search?term=');
+      return {
+          search: function(keywords){
+              var searchTerm = keywords.replace(/[^\w\s]/gi, '');
+              var movieSearchUrl = 'https://itunes.apple.com/search?term=' + searchTerm + '&country=HK&limit=100';
+              console.log(movieSearchUrl);
+              return $http({
+                method: 'JSONP',
+                url: movieSearchUrl,
+                async: true,
+                headers: {
+                  'cache-control': 'no-cache',
+                  'postman-token': '6f5dd5be-14b8-adfb-0294-5502cf2d912f'
+                }
+              }).then(function(response){
+                console.log(response);
+                return response;
+              });
+          }
+      };
+    }]);
 
-  //     return {
-  //         search: function(keywords, mediaurl){
-  //             var fullLink = appleLink + keywords + mediaurl;
-  //             $http({
-  //               method: 'JSONP',
-  //               url: fullLink,
-  //               async: true,
-  //               headers: {
-  //                 'cache-control': 'no-cache',
-  //                 'postman-token': '6f5dd5be-14b8-adfb-0294-5502cf2d912f'
-  //               }
-  //             });
-  //         }
-  //     };
-  //   }]);
-
-  });
+  // });

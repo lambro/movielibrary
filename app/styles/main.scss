@@ -62,7 +62,7 @@ input.search-bar{
     color: $text-color;
     height: 34px;
     border: none;
-    padding-left: 35px;
+    padding-left: 40px;
     transition: all 0.3s ease;
     outline: none;
     width: 30px;
@@ -83,7 +83,7 @@ input.search-bar{
   background-size: cover;
   width:100%;
   min-height: 230px;
-  background-position: center;
+  background-position:top;
   @media (screen and $screen-sm-min){
     width:100%;
     min-height: 300px;
