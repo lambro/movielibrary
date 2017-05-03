@@ -34,22 +34,25 @@
     <div class="row">
       <div class="col-xs-12 col-md-5">
         <ul class="nav menu">
-            <li class="nav-item" ng-class="{ active: (isActive('/movies') || isActive('/'))}" ng-click="moviesActive = true; podcastsActive = false; musicActive = false; musicVideosActive = false; searching = false;">
-              <a class="nav-link" href="#!/movies" >Movies</a>
-            </li>
-            <li class="nav-item" ng-class="{ active: isActive('/podcasts')}"  ng-click="podcastsActive = true; moviesActive = false; musicActive = false; musicVideosActive = false; searching = false;" >
-              <a class="nav-link" href="#!/podcasts">Podcast</a>
-            </li>
-            <li class="nav-item" ng-class="{ active: isActive('/music')}" ng-click="musicActive = true; moviesActive = false; podcastsActive = false; musicVideosActive = false; searching = false;" >
-              <a class="nav-link" href="#!/music">Music</a>
-            </li>
-            <li class="nav-item" ng-class="{ active: isActive('/music-videos')}" ng-click="musicVideosActive = true; podcastsActive = false; musicActive = false; moviesActive = false; searching = false;" >
-              <a class="nav-link" href="#!/music-videos">Music Videos</a>
-            </li>
+          <li class="nav-item" ng-class="{ active: (isActive('/movies') || isActive('/'))}" ng-click="searching = false;">
+            <a class="nav-link" href="#!/movies" >Movies</a>
+          </li>
+          <li class="nav-item" ng-class="{ active: isActive('/podcasts')}"  ng-click="searching = false;" >
+            <a class="nav-link" href="#!/podcasts">Podcast</a>
+          </li>
+          <li class="nav-item" ng-class="{ active: isActive('/music')}" ng-click="searching = false;" >
+            <a class="nav-link" href="#!/music">Music</a>
+          </li>
+          <li class="nav-item" ng-class="{ active: isActive('/music-videos')}" ng-click="searching = false;" >
+            <a class="nav-link" href="#!/music-videos">Music Videos</a>
+          </li>
+          <li class="nav-item" ng-class="{ active: isActive('/about')}" ng-click="searching = false;" >
+            <a class="nav-link" href="#!/about">About This Test</a>
+          </li>
           </ul>
         </div>
       <div class="col-xs-12 col-md-7">
-        <input class="pull-right search-bar" ng-model="newSearchTerm" ng-keyup="searching = true; searchItunes(newSearchTerm, initialSearch)" type="text">
+        <input class="pull-right search-bar" ng-model="newSearchTerm" ng-change="searching = true; searchItunes(newSearchTerm, initialSearch)" type="text">
       </div>
     </div>
   </div>
@@ -97,6 +100,7 @@
         <script src="scripts/controllers/music.js"></script>
         <script src="scripts/controllers/music-videos.js"></script>
         <script src="scripts/services/itunesCall.js"></script>
+        <script src="scripts/controllers/about.js"></script>
         <!-- endbuild -->
 </body>
 </html>
