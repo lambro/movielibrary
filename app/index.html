@@ -37,13 +37,13 @@
             <li class="nav-item" ng-class="{ active: (isActive('/movies') || isActive('/'))}" ng-click="moviesActive = true; podcastsActive = false; musicActive = false; musicVideosActive = false; searching = false;">
               <a class="nav-link" href="#!/movies" >Movies</a>
             </li>
-            <li class="nav-item" ng-class="{ active: isActive('/podcasts')}"  ng-click="podcastsActive = true; moviesActive = false; musicActive = false; musicVideosActive = false; searching = false; searchItunes('science', 'podcasts'); " >
+            <li class="nav-item" ng-class="{ active: isActive('/podcasts')}"  ng-click="podcastsActive = true; moviesActive = false; musicActive = false; musicVideosActive = false; searching = false;" >
               <a class="nav-link" href="#!/podcasts">Podcast</a>
             </li>
-            <li class="nav-item" ng-class="{ active: isActive('/music')}" ng-click="musicActive = true; moviesActive = false; podcastsActive = false; musicVideosActive = false; searching = false; searchItunes('pop', 'music'); " >
+            <li class="nav-item" ng-class="{ active: isActive('/music')}" ng-click="musicActive = true; moviesActive = false; podcastsActive = false; musicVideosActive = false; searching = false;" >
               <a class="nav-link" href="#!/music">Music</a>
             </li>
-            <li class="nav-item" ng-class="{ active: isActive('/music-videos')}" ng-click="musicVideosActive = true; podcastsActive = false; musicActive = false; moviesActive = false; searching = false; searchItunes('jazz', 'musicVideo'); " >
+            <li class="nav-item" ng-class="{ active: isActive('/music-videos')}" ng-click="musicVideosActive = true; podcastsActive = false; musicActive = false; moviesActive = false; searching = false;" >
               <a class="nav-link" href="#!/music-videos">Music Videos</a>
             </li>
           </ul>

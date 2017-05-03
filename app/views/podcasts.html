@@ -1,6 +1,6 @@
 <div class="row justify-content-center" ng-show="!searching">
   <div class="movie item col-xs-6 col-sm-4 col-md-2" data-toggle="modal" data-target="#movieDetail-{{$index}}"
-  ng-repeat="result in searchResults">
+  ng-repeat="result in podcastSearchResults">
     <div class="inner">
       <div class="background-as-image music" style="background-image: url({{getHighRes(result.artworkUrl100)}});"> </div>
       <div class="title"><a href="{{result.trackViewUrl}}"><p class="truncate">{{result.trackName}}</p></a></div>

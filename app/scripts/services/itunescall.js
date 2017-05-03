@@ -15,7 +15,7 @@
     return {
         search: function(keywords, mediaType){
           var searchTerm = keywords.replace(/[^\w\s]/gi, '');
-          var movieSearchUrl = 'https://itunes.apple.com/search?term=' + searchTerm + '&country=HK&limit=100&media=' + mediaType ;
+          var movieSearchUrl = 'https://itunes.apple.com/search?term=' + searchTerm + '&country=HK&limit=100&media=' + mediaType + '&sort=recent';
           console.log(movieSearchUrl);
           return $http({
             method: 'JSONP',
