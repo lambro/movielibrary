@@ -1,35 +1,83 @@
-<h1>Search Results</h1>
+<div class="col-12 text-center">
+  <h2>Search Results for </h2>
+  <h2>"{{newSearchTerm}}"</h2>
+  <!-- {{numberOfResults}} -->
+  <!-- {{newSearchResults}} -->
+  <ul class="list-unstyled hidden-sm-down margin-top">
+    <li class="filter-item" ng-repeat="filter in filterTypes">
+      <div ng-click="searchItunes(newSearchTerm, filter)">{{filter}}</div>
+    </li>
+  </ul>
 
-<h2>You are searching for:  "{{newSearchTerm}}"</h2>
-<!-- <h2>{{searchResults}}</h2> -->
-<!-- 
-{{numberOfResults}}
-{{newSearchResults}}
- --><div ng-repeat="result in newSearchResults">
+  <div class="hidden-md-up" class="text-center">
+    <select name="repeatSelect" id="repeatSelect" ng-model="filter"  ng-change="searchItunes(newSearchTerm, filter)" >
+          <option value="">Please select a filter</option>
+          <option ng-repeat="filter in filterTypes" >{{filter}}</option>
+    </select>
+  </div>
+</div>
+
+<div class="col-12 text-center margin-top" ng-if="spinner">
+  <p >Loading</p>
+  <img class="spinner" ng-src="./images/spinner2.png">
+</div>
+
+
+<div class="results-box" ng-if="!spinner" ng-repeat="result in newSearchResults" data-toggle="modal" data-target="#detail-{{$index}}">
   <div class="item col-xs-6 col-sm-4 col-md-2">
       <div class="inner">
-      <h1>{{result.kind}}</h1>
+        <p class="truncate">{{result.kind}}</p>
         <div class="background-as-image music" style="background-image: url({{getHighRes(result.artworkUrl100)}});"> </div>
         <div class="title"><a href="{{result.trackViewUrl}}"><p class="truncate">{{result.trackName}}</p></a></div>
         <div class="artist"><a href="{{result.artistViewUrl}}"><p class="truncate">{{result.artistName}}</p></a></div>
         <div class="date" ng-bind="result.releaseDate | date:'yyyy'"></div>
       </div>
   </div>
-</div>
+  <div class="modal fade showVideo" id="detail-{{$index}}" tabindex="-1" role="dialog" aria-labelledby="videoShowLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="container-fluid">
+              <div class="row row-eq-height">
+                <div class="col-md-12 track-name">
+                  <h2>{{result.trackName}}</h2>
+                </div>
+                <div class="col-xs-12 col-md-6" ng-if="!result.previewUrl">
+                  <img src="{{getHighRes(result.artworkUrl100)}}" class="img-fluid" style="width: 100%">
+                </div>
+                <div class="col-md-12" ng-if="result.previewUrl">
+                  <video poster="{{getHighRes(result.artworkUrl100)}}" id="#previewVideo" ng-if="result.previewUrl" width="100%" preload="auto" controls>
+                    <source src="{{result.previewUrl}}" type="video/mp4">
+                    Your browser does not support the HTML5 video tag.
+                  </video>
+                </div>
 
+                <!-- fields to show for movies -->
+                <div class="col-xs-12 col-md-6" ng-if="!result.previewUrl && result.kind == 'movie'">
+                  <h2>Plot Summary</h2>
+                  <p>{{result.longDescription}}</p>
+                </div>
+                <div class="col-md-12" ng-if="result.previewUrl && result.kind == 'movie'">
+                  <h2>Plot Summary</h2>
+                  <p>{{result.longDescription}}</p>
+                </div>
 
-<hr>
-
-<div ng-repeat="result in searchResults | orderBy:'releaseDate'">
-  <div class="item col-xs-6 col-sm-4 col-md-2">
-      <div class="inner">
-      <h1>{{result.kind}}</h1>
-        <div class="background-as-image music" style="background-image: url({{getHighRes(result.artworkUrl100)}});"> </div>
-        <div class="title"><a href="{{result.trackViewUrl}}"><p class="truncate">{{result.trackName}}</p></a></div>
-        <div class="artist"><a href="{{result.artistViewUrl}}"><p class="truncate">{{result.artistName}}</p></a></div>
-        <div class="date" ng-bind="result.releaseDate | date:'yyyy'"></div>
+                <!-- fields to show for podcasts -->
+                <div class="col-xs-12 col-md-6" ng-if="result.kind == 'podcast'">
+                  <h2>Genres</h2>
+                  <p ng-repeat="genre in result.genres">{{genre}}</p><br>
+                </div>
+                <div class="col-xs-12 purchase">
+                  <p ng-if="result.trackPrice">Price: {{result.trackPrice}}{{result.currency}}</p>
+                  <a class="btn btn-primary" href="{{result.trackViewUrl}}">View on the itunes store</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-  </div>
+    </div>
 </div>
 
-<div ng-show="!searchResults.length"><h3>Sorry, no results match that query</h3></div>
+
+<div ng-show="!newSearchResults.length && !spinner" class="text-center"><h3>Sorry, no results match that query</h3></div>

@@ -8,28 +8,33 @@
  * Controller of the movieLibraryApp
  */
 angular.module('movieLibraryApp')
-  .controller('MoviesCtrl', function ($scope, $http) {
+  .controller('MoviesCtrl', function ($scope, itunesCall) {
     // set initial search term - itunes doesnt seem to allow a general 'movie search...';
-    $scope.searchTerm = 2017;
-    var searchTerm = $scope.searchTerm;
+    var params = 'horror';
+    var mediaType = 'all';
+    $scope.spinner = true;
+    params = params.replace(/[^\w\s]/gi, '');
+    itunesCall.search(params, mediaType).then(function(response){
+      $scope.numberOfResults = response.data.resultCount;
+      $scope.movieSearchResults = response.data.results;
+      $scope.spinner = false;
+    });    // var movieSearchUrl = $scope.trustSrc('https://itunes.apple.com/search?term=' + searchTerm + '&entity=movie&country=HK&limit=100');
 
-    var movieSearchUrl = $scope.trustSrc('https://itunes.apple.com/search?term=' + searchTerm + '&entity=movie&country=HK&limit=100');
+    // $scope.searchResults = [];
 
-    $scope.searchResults = [];
-
-    $http({
-      method: 'JSONP',
-      url: movieSearchUrl,
-      async: true,
-      headers: {
-        'cache-control': 'no-cache',
-        'postman-token': '6f5dd5be-14b8-adfb-0294-5502cf2d912f'
-      }
-    }).then(function successCallback(response) {
-      console.log('call successful');
-      $scope.searchResults = response.data.results;
-      $scope.myWelcome = response.data.results[0].trackName;
-    }, function errorCallback() {
-      // console.log('no response');
-    });
+    // $http({
+    //   method: 'JSONP',
+    //   url: movieSearchUrl,
+    //   async: true,
+    //   headers: {
+    //     'cache-control': 'no-cache',
+    //     'postman-token': '6f5dd5be-14b8-adfb-0294-5502cf2d912f'
+    //   }
+    // }).then(function successCallback(response) {
+    //   console.log('call successful');
+    //   $scope.searchResults = response.data.results;
+    //   $scope.myWelcome = response.data.results[0].trackName;
+    // }, function errorCallback() {
+    //   // console.log('no response');
+    // });
   });

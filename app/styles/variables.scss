@@ -1,10 +1,15 @@
 //google fonts
 @import url('https://fonts.googleapis.com/css?family=Lato|Muli|Pacifico');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Roboto|Roboto+Condensed');
+
+// font-family: 'Roboto Condensed', sans-serif;
+// font-family: 'Open Sans Condensed', sans-serif;
+// font-family: 'Roboto', sans-serif;
 
 $screen-sm-min: "min-width: 750px";
-$header-font: 'Pacifico', cursive;
-$sub-heading-font: 'Lato', sans-serif;
-$base-font-sans: 'Muli', sans-serif;
+$header-font: 'Roboto Condensed', sans-serif;
+$sub-heading-font: 'Open Sans Condensed', sans-serif;
+$base-font-sans: 'Roboto Condensed', sans-serif;
 $color-point: rgba(0, 151, 167, 1.0);
 $text-color: rgba(255, 255, 255, 1);
 $faded-text-color: rgba(255, 255, 255, 0.6);

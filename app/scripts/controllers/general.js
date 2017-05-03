@@ -22,19 +22,19 @@ angular.module('movieLibraryApp')
     $scope.trustSrc = function(src) {
       return $sce.trustAsResourceUrl(src);
     };
+
+    $scope.initialSearch = 'all';
     // search on input change function
-    $scope.searchItunes = function(params){
-      params = params.replace(/[^\w\s]/gi, '');
-      $scope.searchItunes = function(keywords){
-        itunesCall.search(keywords).then(function(response){
+    $scope.searchItunes = function(params, mediaType){
+        $scope.spinner = true;
+        params = params.replace(/[^\w\s]/gi, '');
+        itunesCall.search(params, mediaType).then(function(response){
           $scope.numberOfResults = response.data.resultCount;
           $scope.newSearchResults = response.data.results;
+          $scope.spinner = false;
         });
-      };
     };
 
-    $scope.stopVideo = function ($) {
-      var video = $(video);
-      video.pause();
-    };
+    $scope.filterTypes = ['movie', 'podcast', 'music', 'musicVideo', 'audiobook', 'shortFilm', 'tvShow', 'software', 'ebook', 'all'];
+
   });
